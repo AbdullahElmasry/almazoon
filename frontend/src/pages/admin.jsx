@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000', // Replace your_backend_port with the actual port of your backend
+  baseURL: process.env.server, // Replace your_backend_port with the actual port of your backend
 });
 
 

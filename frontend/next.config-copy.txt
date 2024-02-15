@@ -1,13 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = (phase, { defaultConfig }) => {
-  if (phase === 'phase-development-server') {
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+
+module.exports = (phase) => {
+
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
-      ...defaultConfig,
       reactStrictMode: true,
       poweredByHeader: false,
-      images: {
-        domains: ['localhost'],
-      },
       env: {
         server: 'http://localhost:5000',
         frontName: 'phoneyou7',
@@ -15,16 +13,13 @@ const nextConfig = (phase, { defaultConfig }) => {
         admin: '/nali_admin',
         email: 'phoneyou7@gmail.com'
       },
-    };
+    }
   }
 
+
   return {
-    ...defaultConfig,
     reactStrictMode: false,
     poweredByHeader: false,
-    images: {
-      domains: ['localhost'],
-    },
     env: {
       server: 'https://api.phoneyou7.com',
       frontName: 'phoneyou7',
@@ -32,7 +27,6 @@ const nextConfig = (phase, { defaultConfig }) => {
       admin: '/nali_admin',
       email: 'phoneyou7@gmail.com'
     },
-  };
-};
+  }
 
-module.exports = nextConfig;
+}
