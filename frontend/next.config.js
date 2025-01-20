@@ -26,7 +26,7 @@ const nextConfig = (phase, { defaultConfig }) => {
       domains: ['localhost'],
     },
     env: {
-      server: 'https://api.phoneyou7.com',
+	server: 'http://159.203.131.104:5000',
       frontName: 'phoneyou7',
       frontEnd_host: 'https://phoneyou7.com',
       admin: '/nali_admin',

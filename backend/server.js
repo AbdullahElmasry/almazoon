@@ -12,7 +12,7 @@ import fs from 'fs'; // Import fs module
 import { authAdminMiddleware } from './controllers/adminController.js';
 import { signOut } from './middleware/authMiddleware.js';
 
-dotenv.config();
+dotenv.config({ path: './production.env' });
 
 const app = express();
 app.use(cookieParser());
@@ -39,7 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL], // Adjust to your frontend origin
+    origin: [process.env.FRONTEND_URL ], // Adjust to your frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Allow cookies to be sent from the frontend
