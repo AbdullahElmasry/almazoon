@@ -61,4 +61,29 @@ app.get('/', (req, res) => res.send('Server is ready'));
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server is listening on port ${port}`));
+app.listen(port, () => console.log(`Server is listening on port ${port}`))
+
+const https = require('https');
+const fs = require('fs');
+const express = require('express');
+const app = express();
+
+// Load SSL certificate and key
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/almaazoon.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/almaazoon.com/fullchain.pem'),
+};
+
+// Your routes and middleware
+app.get('/api', (req, res) => {
+  res.send('Backend is running over HTTPS!');
+});
+
+// Create HTTPS server
+const server = https.createServer(options, app);
+
+// Start the server
+const PORT = 443; // Default HTTPS port
+server.listen(PORT, () => {
+  console.log(`Backend running on https://almaazoon.com:${port}`);
+});
